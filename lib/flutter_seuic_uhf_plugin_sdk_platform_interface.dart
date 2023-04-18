@@ -51,4 +51,12 @@ abstract class FlutterSeuicUhfPluginSdkPlatform extends PlatformInterface {
   Future<String?> getFirmwareVersion() {
     throw UnimplementedError('getFirmwareVersion() has not been implemented.');
   }
+
+  Future<int?> getPower() {
+    throw UnimplementedError('getPower() has not been implemented.');
+  }
+
+  Future<void> setPower(int power) {
+    throw UnimplementedError('setPower() has not been implemented.');
+  }
 }

@@ -30,4 +30,12 @@ class FlutterSeuicUhfPluginSdk {
     return FlutterSeuicUhfPluginSdkPlatform.instance.unregisterCallback();
   }
 
+  Future<int?> getPower() {
+    return FlutterSeuicUhfPluginSdkPlatform.instance.getPower();
+  }
+
+  Future<void> setPower(int power) {
+    return FlutterSeuicUhfPluginSdkPlatform.instance.setPower(power);
+  }
+
 }

@@ -18,6 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _epcId = "";
   String _version = "";
+  int _power = 0;
 
   String _platformVersion = 'Unknown';
   final _flutterSeuicUhfPluginSdkPlugin = FlutterSeuicUhfPluginSdk();
@@ -71,6 +72,18 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void getPower() async {
+    final result;
+    result = await _flutterSeuicUhfPluginSdkPlugin.getPower();
+    setState(() {
+      _power = result;
+    });
+  }
+
+  void setPower(int power) async{
+    await _flutterSeuicUhfPluginSdkPlugin.setPower(power);
+  }
+
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String platformVersion;
@@ -94,6 +107,8 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  TextEditingController textEditingController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -101,38 +116,58 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              Text('Running on: $_platformVersion\n'),
-              Text('epcId on: $_epcId\n'),
-              Text('固件版本:$_version'),
-              ElevatedButton(
-                  onPressed: () {
-                    open();
-                  },
-                  child: Text('开启')),
-              ElevatedButton(
-                  onPressed: () {
-                    close();
-                  },
-                  child: Text('关闭')),
-              ElevatedButton(
-                  onPressed: () {
-                    registerCallback();
-                  },
-                  child: Text('注册')),
-              ElevatedButton(
-                  onPressed: () {
-                    unregisterCallback();
-                  },
-                  child: Text('注销')),
-              ElevatedButton(
-                  onPressed: () {
-                    getFirmwareVersion();
-                  },
-                  child: Text('获取固件版本')),
-            ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Text('Running on: $_platformVersion\n'),
+                Text('epcId on: $_epcId\n'),
+                Text('固件版本:$_version'),
+                Text('功率:$_power'),
+                ElevatedButton(
+                    onPressed: () {
+                      open();
+                    },
+                    child: Text('开启')),
+                ElevatedButton(
+                    onPressed: () {
+                      close();
+                    },
+                    child: Text('关闭')),
+                ElevatedButton(
+                    onPressed: () {
+                      registerCallback();
+                    },
+                    child: Text('注册')),
+                ElevatedButton(
+                    onPressed: () {
+                      unregisterCallback();
+                    },
+                    child: Text('注销')),
+                ElevatedButton(
+                    onPressed: () {
+                      getFirmwareVersion();
+                    },
+                    child: Text('获取固件版本')),
+                ElevatedButton(
+                    onPressed: () {
+                      getPower();
+                    },
+                    child: Text('获取功率')),
+                  TextField(
+                    controller: textEditingController,
+                    decoration: InputDecoration(
+                      hintText: '请输入功率',
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.send),
+                        onPressed: () {
+                          setPower(int.parse(textEditingController.text));
+                        },
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

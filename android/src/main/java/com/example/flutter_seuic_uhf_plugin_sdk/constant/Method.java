@@ -7,6 +7,8 @@ public interface Method {
     String GET_TEMPERATURE = "GET_TEMPERATURE";
     String GET_POWER = "GET_POWER";
 
+    String SET_POWER = "SET_POWER";
+
     String REGISTER_CALLBACK = "REGISTER_CALLBACK";
 
     String UNREGISTER_CALLBACK = "UNREGISTER_CALLBACK";

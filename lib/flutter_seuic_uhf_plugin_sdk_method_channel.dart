@@ -50,26 +50,37 @@ class MethodChannelFlutterSeuicUhfPluginSdk extends FlutterSeuicUhfPluginSdkPlat
 
   @override
   Future<String> open() async{
-    final open = await versionChannel.invokeMethod(Method.OPEN);
+    final open = await openChannel.invokeMethod(Method.OPEN);
     return open;
   }
 
 
   @override
   Future<String> close() async{
-    final close = await versionChannel.invokeMethod(Method.CLOSE);
+    final close = await closeChannel.invokeMethod(Method.CLOSE);
     return close;
   }
 
   @override
   Future<bool> registerCallback() async{
-    final reg = await versionChannel.invokeMethod(Method.REGISTER_CALLBACK);
+    final reg = await methodChannel.invokeMethod(Method.REGISTER_CALLBACK);
     return reg;
   }
 
   @override
   Future<bool> unregisterCallback() async{
-    final unReg = await versionChannel.invokeMethod(Method.UNREGISTER_CALLBACK);
+    final unReg = await methodChannel.invokeMethod(Method.UNREGISTER_CALLBACK);
     return unReg;
+  }
+
+  @override
+  Future<int> getPower() async{
+    final power = await powerChannel.invokeMethod(Method.GET_POWER);
+    return power;
+  }
+
+  @override
+  Future<void> setPower(int power) async{
+    await powerChannel.invokeMethod(Method.SET_POWER,power);
   }
 }
