@@ -1,15 +1,48 @@
 # flutter_seuic_uhf_plugin_sdk
 
-A new Flutter project.
+A Flutter plugin based on the seuic(东集) UTouch mobile phone uhf scanner SDK
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+in pubspec.yml dependencies add
 
+```yaml
+
+flutter_seuic_uhf_plugin_sdk:
+  git:
+    url: https://github.com/Soullose/flutter_seuic_uhf_plugin_sdk.git
+
+```
+
+## Get UHF Scanner
+
+```dart
+final _flutterSeuicUhfPluginSdkPlugin = FlutterSeuicUhfPluginSdk();
+
+
+
+void initScanner() {
+  String barcode;
+  _flutterSeuicUhfPluginSdkPlugin.getUHF().listen((dynamic event) {
+    barcode = event ?? '无';
+    setState(() {
+      _epcId = barcode;
+    });
+  });
+}
+
+void open() async {
+  final result;
+  result = await _flutterSeuicUhfPluginSdkPlugin.open();
+  print('open:$result');
+}
+
+void close() async {
+  final result;
+  result = await _flutterSeuicUhfPluginSdkPlugin.close();
+  print('close:$result');
+}
+
+
+```
