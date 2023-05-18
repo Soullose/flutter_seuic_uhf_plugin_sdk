@@ -1,13 +1,12 @@
 class Method {
-  static String OPEN = "OPEN";
-  static String CLOSE = "CLOSE";
-  static String GET_FIRMWARE_VERSION = "GET_FIRMWARE_VERSION";
-  static String GET_TEMPERATURE = "GET_TEMPERATURE";
-  static String GET_POWER = "GET_POWER";
-  static String SET_POWER = "SET_POWER";
+  static String open = "OPEN";
+  static String close = "CLOSE";
+  static String getFirmwareVersion = "GET_FIRMWARE_VERSION";
+  static String getTemperature = "GET_TEMPERATURE";
+  static String getPower = "GET_POWER";
+  static String setPower = "SET_POWER";
 
+  static String registerCallback = "REGISTER_CALLBACK";
 
-  static String REGISTER_CALLBACK = "REGISTER_CALLBACK";
-
-  static String UNREGISTER_CALLBACK = "UNREGISTER_CALLBACK";
+  static String unregisterCallback = "UNREGISTER_CALLBACK";
 }

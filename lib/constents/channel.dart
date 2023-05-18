@@ -1,8 +1,8 @@
 class Channel {
-  static String METHOD_CHANNEL_OPEN = "METHOD_CHANNEL_OPEN";
-  static String METHOD_CHANNEL_CLOSE = "METHOD_CHANNEL_CLOSE";
-  static String METHOD_CHANNEL_VERSION = "METHOD_CHANNEL_VERSION";
-  static String METHOD_CHANNEL_TEMP = "METHOD_CHANNEL_TEMP";
-  static String METHOD_CHANNEL_POWER = "METHOD_CHANNEL_POWER";
-  static String EVENT_CHANNEL_SCANNER_UHF = "EVENT_CHANNEL_SCANNER_UHF";
+  static String methodChannelOpen = "METHOD_CHANNEL_OPEN";
+  static String methodChannelClose = "METHOD_CHANNEL_CLOSE";
+  static String methodChannelVersion = "METHOD_CHANNEL_VERSION";
+  static String methodChannelTemp = "METHOD_CHANNEL_TEMP";
+  static String methodChannelPower = "METHOD_CHANNEL_POWER";
+  static String eventChannelScannerUhf = "EVENT_CHANNEL_SCANNER_UHF";
 }

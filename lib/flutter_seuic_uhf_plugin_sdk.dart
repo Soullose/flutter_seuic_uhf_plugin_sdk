@@ -21,7 +21,6 @@ class FlutterSeuicUhfPluginSdk {
     return FlutterSeuicUhfPluginSdkPlatform.instance.close();
   }
 
-
   Future<bool?> registerCallback() {
     return FlutterSeuicUhfPluginSdkPlatform.instance.registerCallback();
   }
@@ -37,5 +36,4 @@ class FlutterSeuicUhfPluginSdk {
   Future<void> setPower(int power) {
     return FlutterSeuicUhfPluginSdkPlatform.instance.setPower(power);
   }
-
 }

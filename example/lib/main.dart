@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_seuic_uhf_plugin_sdk/flutter_seuic_uhf_plugin_sdk.dart';
 
@@ -41,46 +42,54 @@ class _MyAppState extends State<MyApp> {
   }
 
   void open() async {
-    final result;
+    final String? result;
     result = await _flutterSeuicUhfPluginSdkPlugin.open();
-    print('open:$result');
+    if (kDebugMode) {
+      print('open:$result');
+    }
   }
 
   void close() async {
-    final result;
+    final String? result;
     result = await _flutterSeuicUhfPluginSdkPlugin.close();
-    print('close:$result');
+    if (kDebugMode) {
+      print('close:$result');
+    }
   }
 
   void registerCallback() async {
-    final result;
+    final bool? result;
     result = await _flutterSeuicUhfPluginSdkPlugin.registerCallback();
-    print('registerCallback:$result');
+    if (kDebugMode) {
+      print('registerCallback:$result');
+    }
   }
 
   void unregisterCallback() async {
-    final result;
+    final bool? result;
     result = await _flutterSeuicUhfPluginSdkPlugin.unregisterCallback();
-    print('unregisterCallback:$result');
+    if (kDebugMode) {
+      print('unregisterCallback:$result');
+    }
   }
 
   void getFirmwareVersion() async {
-    final result;
+    final String? result;
     result = await _flutterSeuicUhfPluginSdkPlugin.getFirmwareVersion();
     setState(() {
-      _version = result;
+      _version = result!;
     });
   }
 
   void getPower() async {
-    final result;
+    final int? result;
     result = await _flutterSeuicUhfPluginSdkPlugin.getPower();
     setState(() {
-      _power = result;
+      _power = result!;
     });
   }
 
-  void setPower(int power) async{
+  void setPower(int power) async {
     await _flutterSeuicUhfPluginSdkPlugin.setPower(power);
   }
 
@@ -107,7 +116,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  TextEditingController textEditingController = new TextEditingController();
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -128,44 +137,44 @@ class _MyAppState extends State<MyApp> {
                     onPressed: () {
                       open();
                     },
-                    child: Text('开启')),
+                    child: const Text('开启')),
                 ElevatedButton(
                     onPressed: () {
                       close();
                     },
-                    child: Text('关闭')),
+                    child: const Text('关闭')),
                 ElevatedButton(
                     onPressed: () {
                       registerCallback();
                     },
-                    child: Text('注册')),
+                    child: const Text('注册')),
                 ElevatedButton(
                     onPressed: () {
                       unregisterCallback();
                     },
-                    child: Text('注销')),
+                    child: const Text('注销')),
                 ElevatedButton(
                     onPressed: () {
                       getFirmwareVersion();
                     },
-                    child: Text('获取固件版本')),
+                    child: const Text('获取固件版本')),
                 ElevatedButton(
                     onPressed: () {
                       getPower();
                     },
-                    child: Text('获取功率')),
-                  TextField(
-                    controller: textEditingController,
-                    decoration: InputDecoration(
-                      hintText: '请输入功率',
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.send),
-                        onPressed: () {
-                          setPower(int.parse(textEditingController.text));
-                        },
-                      ),
+                    child: const Text('获取功率')),
+                TextField(
+                  controller: textEditingController,
+                  decoration: InputDecoration(
+                    hintText: '请输入功率',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.send),
+                      onPressed: () {
+                        setPower(int.parse(textEditingController.text));
+                      },
                     ),
                   ),
+                ),
               ],
             ),
           ),
